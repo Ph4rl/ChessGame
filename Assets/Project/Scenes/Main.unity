@@ -209,13 +209,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898396980}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 4, y: 7.5, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &898396984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,7 +286,7 @@ Transform:
   m_GameObject: {fileID: 1613839454}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -305,6 +305,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileMaterial: {fileID: 2100000, guid: 15f93fb406144b841a627d7e043e53f7, type: 2}
+  tileSize: 1
+  yOffset: 0.2
+  boardCenter: {x: 0, y: 0, z: 0}
+  prefabs:
+  - {fileID: 6380403039237624316, guid: e856e56787937ec4ca541a8ced677d48, type: 3}
+  - {fileID: 1841389640884498107, guid: 76de2e9f8767d1f46bee675bfb5c617a, type: 3}
+  - {fileID: 1965171100022223056, guid: 4ecc4138aa4ebe74dbeb77b82b23dd60, type: 3}
+  - {fileID: 9029574671021004394, guid: a9e2ae81a15849b46b7d86839ea5debc, type: 3}
+  - {fileID: 5578015069502439979, guid: b5f000beefdc9e642a2326bdadc7b94d, type: 3}
+  - {fileID: 374808326877054935, guid: f1e1fd965c9ecdd43b987c04c9d10804, type: 3}
+  teamMaterials:
+  - {fileID: 2100000, guid: b408fdec80e83eb488018785c2bb2217, type: 2}
+  - {fileID: 2100000, guid: 84bc708b8a72d5b479287f05356c86c1, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
