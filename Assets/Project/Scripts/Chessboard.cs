@@ -17,12 +17,14 @@ public class Chessboard : MonoBehaviour
     [SerializeField] private Material[] teamMaterials;
 
     // Logic and values
-    private ChessPiece[,] chessPieces;    
+    private ChessPiece[,] chessPieces;
+    private ChessPiece currentlyDragging;
     private const int TileCountX = 8;
     private const int TileCountY = 8;
     private GameObject[,] tiles;
     private Camera currentCamera;
     private Vector2Int currentHover;
+    private Vector3 bounds;
 
     private void Awake()
     {
@@ -64,6 +66,33 @@ public class Chessboard : MonoBehaviour
                 currentHover = hitPosition;
                 tiles[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
             }    
+
+            // mouse click
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (chessPieces[hitPosition.x, hitPosition.y] != null)
+                {
+                    // our turn?
+                    if (true)
+                    {
+                        currentlyDragging = chessPieces[hitPosition.x, hitPosition.y];
+
+                    }
+                }
+            }
+
+            // mouse click release
+            if(currentlyDragging != null && Input.GetMouseButtonUp(0))
+            {
+                Vector2Int previousPosition = new Vector2Int(currentlyDragging.currentX, currentlyDragging.currentY);
+
+                bool validMove = MoveTo (currentlyDragging, hitPosition.x, hitPosition.y);
+                if (!validMove)
+                {
+                    currentlyDragging.transform.position = GetTileCenter (previousPosition.x, previousPosition.y);
+                    currentlyDragging = null;
+                }
+            }
         }
         else
         {
@@ -76,9 +105,13 @@ public class Chessboard : MonoBehaviour
     }
 
 
+
     /// Board
     private void GenerateAllTiles(float tileSize, int tileCountX, int tileCountY)
     {
+        yOffset += transform.position.y;
+        bounds = new Vector3((tileCountX / 2) * tileSize, 0, (tileCountX / 2) * tileSize) + boardCenter;
+
         tiles = new GameObject[tileCountX, tileCountY];
         for (int x = 0; x < tileCountX; x++)
             for (int y = 0; y < tileCountY; y++)
@@ -95,10 +128,10 @@ public class Chessboard : MonoBehaviour
         tileObject.AddComponent<MeshRenderer>().material = tileMaterial;
 
         Vector3[] vertices = new Vector3[4];
-        vertices[0] = new Vector3(x * tileSize, 0, y * tileSize);
-        vertices[1] = new Vector3(x * tileSize, 0, (y+1) * tileSize);
-        vertices[2] = new Vector3((x+1) * tileSize, 0, y * tileSize);
-        vertices[3] = new Vector3((x+1) * tileSize, 0, (y + 1) * tileSize);
+        vertices[0] = new Vector3(x * tileSize, yOffset, y * tileSize) - bounds;
+        vertices[1] = new Vector3(x * tileSize, yOffset, (y+1) * tileSize) - bounds;
+        vertices[2] = new Vector3((x+1) * tileSize, yOffset, y * tileSize) - bounds;
+        vertices[3] = new Vector3((x+1) * tileSize, yOffset, (y + 1) * tileSize) - bounds;
 
         int[] tris = new int[] { 0, 1, 2, 1, 3, 2 };
 
@@ -145,7 +178,7 @@ public class Chessboard : MonoBehaviour
         chessPieces[6, 7] = SpawnSinglePiece(ChessPieceType.Knight, blackTeam);
         chessPieces[7, 7] = SpawnSinglePiece(ChessPieceType.Rook, blackTeam);
 
-        for (int i = 7; i < TileCountX; i++)
+        for (int i = 0; i < TileCountX; i++)
             chessPieces[i, 6] = SpawnSinglePiece(ChessPieceType.Pawn, blackTeam);
     }
     private ChessPiece SpawnSinglePiece(ChessPieceType type, int team)
@@ -165,14 +198,19 @@ public class Chessboard : MonoBehaviour
         for (int x = 0; x < TileCountX; x++)
             for (int y = 0; y < TileCountY; y++)
                 if (chessPieces[x, y] != null)
-                    PositionSinglePieces(x, y, true);
+                    PositionSinglePiece(x, y, true);
     }
-    private void PositionSinglePieces(int x, int y, bool force = false)
+    private void PositionSinglePiece(int x, int y, bool force = false)
     {
         chessPieces[x, y].currentX = x;
         chessPieces[x, y].currentY = y;
-        chessPieces[x, y].transform.position = new Vector3 (x * tileSize, yOffset, y * tileSize);
+        chessPieces[x, y].transform.position = GetTileCenter (x, y);
 
+    }
+
+    private Vector3 GetTileCenter(int x, int y)
+    {
+        return new Vector3(x * tileSize, yOffset, y * tileSize) - bounds + new Vector3 (tileSize / 2, 0, tileSize / 2);
     }
     // Operations
     private Vector2Int LookUpTileIndex(GameObject hitInfo)
@@ -184,6 +222,18 @@ public class Chessboard : MonoBehaviour
 
         return -Vector2Int.one; //invalid
     }   
+
+    private bool MoveTo(ChessPiece cp, int x, int y)
+    {
+        Vector2Int previousPosition = new Vector2Int(cp.currentX, cp.currentY);
+
+        chessPieces[x, y] = cp;
+        chessPieces[previousPosition.x, previousPosition.y] = null;
+
+        PositionSinglePiece(x, y);
+
+        return true;
+    }
 
     
 }
