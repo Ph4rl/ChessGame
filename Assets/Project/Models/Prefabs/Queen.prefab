@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3032028537857553590}
   - component: {fileID: 1048567735406387308}
   - component: {fileID: 728675766668082766}
-  - component: {fileID: 6401827564397221082}
+  - component: {fileID: 262701908770323636}
   m_Layer: 0
   m_Name: Queen
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: -1.56, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6401827564397221082
+--- !u!114 &262701908770323636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5578015069502439979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebe5ffc60a779a94f9cb4614bd564925, type: 3}
+  m_Script: {fileID: 11500000, guid: c275d13502b9e054492a43907790c8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0

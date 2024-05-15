@@ -10,6 +10,8 @@ public class Chessboard : MonoBehaviour
     [SerializeField] private float tileSize = 1.0f;
     [SerializeField] private float yOffset = 0.2f;
     [SerializeField] private Vector3 boardCenter = Vector3.zero;
+    [SerializeField] private float deathSize = 0.5f;
+    [SerializeField] private float deathSpacing = 0.3f;
 
 
     /// Prefab & Material
@@ -19,6 +21,8 @@ public class Chessboard : MonoBehaviour
     // Logic and values
     private ChessPiece[,] chessPieces;
     private ChessPiece currentlyDragging;
+    private List<ChessPiece> deadWhites = new List<ChessPiece>();
+    private List<ChessPiece> deadBlacks = new List<ChessPiece>();
     private const int TileCountX = 8;
     private const int TileCountY = 8;
     private GameObject[,] tiles;
@@ -65,10 +69,10 @@ public class Chessboard : MonoBehaviour
                 tiles[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Tile");
                 currentHover = hitPosition;
                 tiles[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
-            }    
+            }
 
             // mouse click
-            if (Input.GetMouseButtonDown(0))
+            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 if (chessPieces[hitPosition.x, hitPosition.y] != null)
                 {
@@ -76,20 +80,24 @@ public class Chessboard : MonoBehaviour
                     if (true)
                     {
                         currentlyDragging = chessPieces[hitPosition.x, hitPosition.y];
-
                     }
                 }
             }
 
             // mouse click release
-            if(currentlyDragging != null && Input.GetMouseButtonUp(0))
+            if (currentlyDragging != null && Mouse.current.leftButton.wasReleasedThisFrame)
             {
                 Vector2Int previousPosition = new Vector2Int(currentlyDragging.currentX, currentlyDragging.currentY);
 
-                bool validMove = MoveTo (currentlyDragging, hitPosition.x, hitPosition.y);
+                bool validMove = MoveTo(currentlyDragging, hitPosition.x, hitPosition.y);
                 if (!validMove)
                 {
-                    currentlyDragging.transform.position = GetTileCenter (previousPosition.x, previousPosition.y);
+                    currentlyDragging.SetPosition(GetTileCenter(previousPosition.x, previousPosition.y));
+
+                    currentlyDragging = null;
+                }
+                else
+                {
                     currentlyDragging = null;
                 }
             }
@@ -100,6 +108,12 @@ public class Chessboard : MonoBehaviour
             {
                 tiles[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Tile");
                 currentHover = -Vector2Int.one;
+            }
+
+            if (currentlyDragging && Mouse.current.leftButton.wasReleasedThisFrame)
+            {
+                currentlyDragging.SetPosition(GetTileCenter(currentlyDragging.currentX, currentlyDragging.currentY));
+                currentlyDragging = null;
             }
         }
     }
@@ -204,7 +218,7 @@ public class Chessboard : MonoBehaviour
     {
         chessPieces[x, y].currentX = x;
         chessPieces[x, y].currentY = y;
-        chessPieces[x, y].transform.position = GetTileCenter (x, y);
+        chessPieces[x, y].SetPosition(GetTileCenter (x, y), force);
 
     }
 
@@ -226,6 +240,40 @@ public class Chessboard : MonoBehaviour
     private bool MoveTo(ChessPiece cp, int x, int y)
     {
         Vector2Int previousPosition = new Vector2Int(cp.currentX, cp.currentY);
+
+        // piece on target position
+        if (chessPieces[x,y] != null)
+        {
+            ChessPiece ocp = chessPieces[x,y];
+
+            // our piece?
+            if (cp.team == ocp.team)
+            {
+                return false;
+            }
+
+            // if enemy
+            if (ocp.team == 0)
+            {
+                deadWhites.Add(ocp);
+                ocp.SetScale(Vector3.one * deathSize);
+                ocp.SetPosition(
+                    new Vector3(8 * tileSize, yOffset, -1 * tileSize)
+                    - bounds 
+                    + new Vector3(tileSize / 2, 0, tileSize / 2) 
+                    + (Vector3.forward * deathSpacing) * deadWhites.Count);
+            }
+            else
+            {
+                deadBlacks.Add(ocp);
+                ocp.SetScale(Vector3.one * deathSize);
+                ocp.SetPosition(
+                    new Vector3(-1 * tileSize, yOffset, 8 * tileSize)
+                    - bounds
+                    + new Vector3(tileSize / 2, 0, tileSize / 2)
+                    + (Vector3.back * deathSpacing) * deadBlacks.Count); ;
+            } 
+        }
 
         chessPieces[x, y] = cp;
         chessPieces[previousPosition.x, previousPosition.y] = null;
