@@ -123,6 +123,111 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &723182081
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+      propertyPath: m_Name
+      value: Chessboard
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 723182083}
+  m_SourcePrefab: {fileID: 100100000, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+--- !u!1 &723182082 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4c336cc74c8b8bd4e8e13b6643d7f153, type: 3}
+  m_PrefabInstance: {fileID: 723182081}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &723182083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723182082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd7c712efc2cc00409d8e1b2d4bd4bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileMaterial: {fileID: 2100000, guid: 15f93fb406144b841a627d7e043e53f7, type: 2}
+  tileSize: 0.65
+  yOffset: 0.0125
+  boardCenter: {x: 0, y: 0, z: 0}
+  deathSize: 0.5
+  deathSpacing: 0.3
+  prefabs:
+  - {fileID: 731585772222955010, guid: e856e56787937ec4ca541a8ced677d48, type: 3}
+  - {fileID: 8791199098530205025, guid: 76de2e9f8767d1f46bee675bfb5c617a, type: 3}
+  - {fileID: 282270225356535196, guid: 4ecc4138aa4ebe74dbeb77b82b23dd60, type: 3}
+  - {fileID: 141243314107563252, guid: a9e2ae81a15849b46b7d86839ea5debc, type: 3}
+  - {fileID: 5360708502030817025, guid: b5f000beefdc9e642a2326bdadc7b94d, type: 3}
+  - {fileID: 5129880886685044659, guid: f1e1fd965c9ecdd43b987c04c9d10804, type: 3}
+  teamMaterials:
+  - {fileID: 2100000, guid: b408fdec80e83eb488018785c2bb2217, type: 2}
+  - {fileID: 2100000, guid: 84bc708b8a72d5b479287f05356c86c1, type: 2}
 --- !u!1 &898396980
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,69 +365,9 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!1 &1613839454
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1613839455}
-  - component: {fileID: 1613839456}
-  m_Layer: 0
-  m_Name: Chessboard
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1613839455
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613839454}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1613839456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613839454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd7c712efc2cc00409d8e1b2d4bd4bbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileMaterial: {fileID: 2100000, guid: 15f93fb406144b841a627d7e043e53f7, type: 2}
-  tileSize: 0.5
-  yOffset: 0.2
-  boardCenter: {x: 0, y: 0, z: 0}
-  deathSize: 0.5
-  deathSpacing: 0.3
-  prefabs:
-  - {fileID: 6380403039237624316, guid: e856e56787937ec4ca541a8ced677d48, type: 3}
-  - {fileID: 1841389640884498107, guid: 76de2e9f8767d1f46bee675bfb5c617a, type: 3}
-  - {fileID: 1965171100022223056, guid: 4ecc4138aa4ebe74dbeb77b82b23dd60, type: 3}
-  - {fileID: 9029574671021004394, guid: a9e2ae81a15849b46b7d86839ea5debc, type: 3}
-  - {fileID: 5578015069502439979, guid: b5f000beefdc9e642a2326bdadc7b94d, type: 3}
-  - {fileID: 374808326877054935, guid: f1e1fd965c9ecdd43b987c04c9d10804, type: 3}
-  teamMaterials:
-  - {fileID: 2100000, guid: b408fdec80e83eb488018785c2bb2217, type: 2}
-  - {fileID: 2100000, guid: 84bc708b8a72d5b479287f05356c86c1, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 898396983}
-  - {fileID: 1613839455}
+  - {fileID: 723182081}
